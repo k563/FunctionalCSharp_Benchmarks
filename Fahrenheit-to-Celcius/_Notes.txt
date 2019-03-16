@@ -1,0 +1,48 @@
+
+This project compares the runtime performance of a 'direct' (old-fashioned)
+and a 'functional' version of the Fahrenheit-To-Celsius conversion routines 
+from Simon Painter's 'Functional Programming in C#' talk.
+
+  https://github.com/madSimonJ/FunctionalCSharp
+
+The tests use Simon's original Fahrenheit-To-Celcius conversion functions with 'decimal' types,
+and also a tweaked version that uses 'double' instead of 'decimal'.
+
+Typical results (from an i7 laptop) are in the 'TypicalResults' HTML files.
+
+Curiously, the timings are quite different for the decimal and double versions :
+
+ Decimal type : the functional version is about 1.25x slower
+ Double type  : the functional version is over 5x slower ??? !!!
+
+Of course the 'decimal' arithmetic version runs a lot slower inherently.
+1000 iterations with the 'direct' method takes 
+  for the double type  : 15.6uS 
+  for the decimal type : 283uS   <= almost 20x slower !
+
+So, presumably the 'overhead' involved in the Functional approach
+is more significant when the arithmetic operations are inherently faster.
+
+The tests use 'BenchmarkDotNet' :
+
+  https://benchmarkdotnet.org
+  https://benchmarkdotnet.org/articles/guides/good-practices.html
+
+To run the benchmarks :
+- Build in RELEASE mode
+- Open a command line prompt in the directory that contains the generated dll
+  ie \bin\Release\netcoreapp2.1\
+- Install the 'BenchmarkDotNet.Tool' if necessary
+- Run the tool, preferably with no applications running on the machine (ie close Visual Studio)
+- Results get written to \bin\Release\netcoreapp2.1\BenchmarkDotNet.Artifacts\results
+
+See https://benchmarkdotnet.org/articles/guides/how-to-run.html
+
+Other things to try ?
+- ?? Examine the effect of removing the call to Math.Round()
+- ?? Implement the 'direct' version with a single expression and confirm that make no difference
+
+
+
+
+
