@@ -1,2 +1,2 @@
 # FunctionalCSharp_Benchmarks
-Comparing the performance of C# algorithms implemented in a 'traditional' vs a 'functional' style
+Comparing the performance of C# algorithms implemented in a 'functional' vs a 'traditional' style
